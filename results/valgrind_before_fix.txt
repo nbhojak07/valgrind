@@ -1,0 +1,73 @@
+Command used : valgrind ./app/shell-app
+
+==9891== Memcheck, a memory error detector
+==9891== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==9891== Using Valgrind-3.13.0 and LibVEX; rerun with -h for copyright info
+==9891== Command: ./app/shell-app
+==9891== 
+Averaged sensor reading: 10
+==9891== Conditional jump or move depends on uninitialised value(s)
+==9891==    at 0x109D68: main (main.cpp:9)
+==9891== 
+==9891== 
+==9891== HEAP SUMMARY:
+==9891==     in use at exit: 44 bytes in 2 blocks
+==9891==   total heap usage: 4 allocs, 2 frees, 73,772 bytes allocated
+==9891== 
+==9891== LEAK SUMMARY:
+==9891==    definitely lost: 24 bytes in 1 blocks
+==9891==    indirectly lost: 20 bytes in 1 blocks
+==9891==      possibly lost: 0 bytes in 0 blocks
+==9891==    still reachable: 0 bytes in 0 blocks
+==9891==         suppressed: 0 bytes in 0 blocks
+==9891== Rerun with --leak-check=full to see details of leaked memory
+==9891== 
+==9891== For counts of detected and suppressed errors, rerun with: -v
+==9891== Use --track-origins=yes to see where uninitialised values come from
+==9891== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 0 from 0)
+
+Command used : valgrind --tool=helgrind ./app/shell-app
+
+==10066== Helgrind, a thread error detector
+==10066== Copyright (C) 2007-2017, and GNU GPL'd, by OpenWorks LLP et al.
+==10066== Using Valgrind-3.13.0 and LibVEX; rerun with -h for copyright info
+==10066== Command: ./app/shell-app
+==10066== 
+Averaged sensor reading: 10
+==10066== 
+==10066== For counts of detected and suppressed errors, rerun with: -v
+==10066== Use --history-level=approx or =none to gain increased speed, at
+==10066== the cost of reduced accuracy of conflicting-access information
+==10066== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+
+command used : valgrind --leak-check=full ./app/shell-app
+
+==10077== Memcheck, a memory error detector
+==10077== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==10077== Using Valgrind-3.13.0 and LibVEX; rerun with -h for copyright info
+==10077== Command: ./app/shell-app
+==10077== 
+Averaged sensor reading: 10
+==10077== Conditional jump or move depends on uninitialised value(s)
+==10077==    at 0x109D68: main (main.cpp:9)
+==10077== 
+==10077== 
+==10077== HEAP SUMMARY:
+==10077==     in use at exit: 44 bytes in 2 blocks
+==10077==   total heap usage: 4 allocs, 2 frees, 73,772 bytes allocated
+==10077== 
+==10077== 44 (24 direct, 20 indirect) bytes in 1 blocks are definitely lost in loss record 2 of 2
+==10077==    at 0x4C3017F: operator new(unsigned long) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==10077==    by 0x109EA2: AnalogSensor::Read() (AnalogSensor.cpp:24)
+==10077==    by 0x109D44: main (main.cpp:7)
+==10077== 
+==10077== LEAK SUMMARY:
+==10077==    definitely lost: 24 bytes in 1 blocks
+==10077==    indirectly lost: 20 bytes in 1 blocks
+==10077==      possibly lost: 0 bytes in 0 blocks
+==10077==    still reachable: 0 bytes in 0 blocks
+==10077==         suppressed: 0 bytes in 0 blocks
+==10077== 
+==10077== For counts of detected and suppressed errors, rerun with: -v
+==10077== Use --track-origins=yes to see where uninitialised values come from
+==10077== ERROR SUMMARY: 2 errors from 2 contexts (suppressed: 0 from 0)
